@@ -1,0 +1,30 @@
+{
+  "name": "type-safe-ipc",
+  "version": "0.0.1",
+  "description": "A solution for type-safe IPC communication in electron",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyleaupton/type-safe-ipc.git"
+  },
+  "keywords": [
+    "electron",
+    "IPC",
+    "typescript"
+  ],
+  "author": "Kyle Upton <kyleaupton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyleaupton/type-safe-ipc/issues"
+  },
+  "homepage": "https://github.com/kyleaupton/type-safe-ipc#readme",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "typescript": ">= 5.4.0"
+  }
+}
