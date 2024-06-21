@@ -2,7 +2,7 @@
   "name": "@examples/vite",
   "version": "0.0.1",
   "main": "dist-electron/main/index.js",
-  "description": "Vite example for using type-safe-ipc",
+  "description": "Vite example for using typed-electron-ipc",
   "author": "Kyle Upton <kyleaupton@gmail.com>",
   "debug": {
     "env": {
@@ -16,7 +16,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "type-safe-ipc": "file:../.."
+    "typed-electron-ipc": "file:../.."
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

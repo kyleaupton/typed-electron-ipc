@@ -2065,7 +2065,7 @@ type-fest@^0.13.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.13.1.tgz#0172cb5bce80b0bd542ea348db50c7e21834d934"
   integrity sha512-34R7HTnG0XIJcBSn5XhDd7nNFPRcXYRZrBB2O2jdKqYODldSzBAqzsWoZYYvduky73toYS/ESqxPvkDf/F0XMg==
 
-"type-safe-ipc@file:../..":
+"typed-electron-ipc@file:../..":
   version "0.0.1"
 
 typescript@^5.3.3, typescript@^5.4.2:

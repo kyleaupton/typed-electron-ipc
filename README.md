@@ -1,4 +1,4 @@
-# type-safe-ipc
+# typed-electron-ipc
 
 This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent.
 
@@ -21,7 +21,7 @@ Here's a abstract example. For complete examples, see [the examples directory.](
 ### Shared IPC channel type definition (`shared/readFile.ts`)
 
 ```typescript
-import { IpcChannel } from 'type-safe-ipc/shared'
+import { IpcChannel } from 'typed-electron-ipc/shared'
 
 export readFileChannel: IpcChannel<[string], string> = {
   name: '/file/read'
@@ -32,7 +32,7 @@ export readFileChannel: IpcChannel<[string], string> = {
 
 ```typescript
 import fs from 'fs/promises';
-import { registerIpcChannel } from 'type-safe-ipc/main';
+import { registerIpcChannel } from 'typed-electron-ipc/main';
 // Shared IPC channel type
 import { readFileChannel } from 'path/to/shared/readFile.ts';
 
@@ -44,7 +44,7 @@ registerIpcChannel(readFileChannel, (event, path) => {
 ### Renderer process
 
 ```typescript
-import { ipcInvoke } from 'type-safe-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc/renderer';
 // Shared IPC channel type
 import { readFileChannel } from 'path/to/shared/readFile.ts';
 
@@ -63,7 +63,7 @@ We'll continue with the above example of reading a file with `fs`.
 
 ```typescript
 import fs from 'fs/promises'
-import { registerIpcChannel, throwIpcError } from 'type-safe-ipc/main';
+import { registerIpcChannel, throwIpcError } from 'typed-electron-ipc/main';
 // Shared IPC channel type
 import { readFileChannel } from 'path/to/shared/readFile.ts'
 
@@ -82,7 +82,7 @@ registerIpcChannel(readFileChannel, (event, path) => {
 #### Renderer process
 
 ```typescript
-import { ipcInvoke } from 'type-safe-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc/renderer';
 // Shared IPC channel type
 import { readFileChannel } from 'path/to/shared/readFile.ts';
 

@@ -1,5 +1,5 @@
 import { contextBridge } from 'electron';
-import { ipcInvoke } from 'type-safe-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc/renderer';
 import { greetChannel } from '../shared/index.js';
 
 export const api = {
