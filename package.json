@@ -1,6 +1,6 @@
 {
   "name": "typed-electron-ipc",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "A solution for type-safe IPC communication in electron",
   "scripts": {
     "build": "tsc",
@@ -39,19 +39,9 @@
   "files": [
     "dist/**/*"
   ],
-  "types": "./dist/index.d.ts",
   "exports": {
-    "./main": {
-      "import": "./dist/main.js",
-      "require": "./dist/main.js"
-    },
-    "./renderer": {
-      "import": "./dist/renderer.js",
-      "require": "./dist/renderer.js"
-    },
-    "./shared": {
-      "import": "./dist/shared.js",
-      "require": "./dist/shared.js"
-    }
+    "./main": "./dist/main.js",
+    "./renderer": "./dist/renderer.js",
+    "./shared": "./dist/shared.js"
   }
 }
