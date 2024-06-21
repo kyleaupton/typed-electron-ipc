@@ -1,6 +1,6 @@
 # typed-electron-ipc
 
-![NPM Version](https://img.shields.io/npm/v/typed-electron-ipc)
+[![NPM version](https://img.shields.io/npm/v/typed-electron-ipc)](https://www.npmjs.com/package/typed-electron-ipc)
 
 This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent.
 
