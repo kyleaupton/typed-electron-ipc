@@ -1,5 +1,5 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { IpcChannel } from './shared';
+import { IpcChannel } from './shared.js';
 
 /**
  * Throws an IPC error

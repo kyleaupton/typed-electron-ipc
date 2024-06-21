@@ -1,10 +1,10 @@
 import { ipcRenderer } from 'electron';
-import { IpcChannel } from './shared';
+import { IpcChannel } from './shared.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ipcInvoke = async <Args extends any[], Return>(
-  channelDefinition: IpcChannel<Args, Return>,
-  ...args: Args
+export const ipcInvoke = async <P extends any[], R>(
+  channelDefinition: IpcChannel<P, R>,
+  ...args: P
 ) => {
   const result = await ipcRenderer.invoke(channelDefinition.channel, ...args);
 
@@ -12,5 +12,5 @@ export const ipcInvoke = async <Args extends any[], Return>(
     throw new Error(result.error.message);
   }
 
-  return result as Return;
+  return result as R;
 };

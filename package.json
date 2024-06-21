@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A solution for type-safe IPC communication in electron",
   "scripts": {
-    "build": "rm -rf dist && tsc --build tsconfig.esm.json && tsc --build tsconfig.cjs.json && node scripts/distPackageJson.mjs"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -33,21 +33,22 @@
     "electron": ">= 7.0.0",
     "typescript": ">= 5.4.0"
   },
+  "files": [
+    "dist/**/*"
+  ],
+  "types": "./dist/index.d.ts",
   "exports": {
     "./main": {
-      "import": "./dist/cjs/main.js",
-      "require": "./dist/cjs/main.js",
-      "types": "./dist/main.d.ts"
+      "import": "./dist/main.js",
+      "require": "./dist/main.js"
     },
     "./renderer": {
-      "import": "./dist/cjs/renderer.js",
-      "require": "./dist/cjs/renderer.js",
-      "types": "./dist/renderer.d.ts"
+      "import": "./dist/renderer.js",
+      "require": "./dist/renderer.js"
     },
     "./shared": {
-      "import": "./dist/cjs/shared.js",
-      "require": "./dist/cjs/shared.js",
-      "types": "./dist/shared.d.ts"
+      "import": "./dist/shared.js",
+      "require": "./dist/shared.js"
     }
   }
 }

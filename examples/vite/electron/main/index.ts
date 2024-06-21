@@ -1,13 +1,12 @@
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { fileURLToPath } from 'node:url';
-// import { createRequire } from 'node:module';
 import path from 'node:path';
 import os from 'node:os';
 
-// const require = createRequire(import.meta.url);
-// import { registerIpcChannel } from 'type-safe-ipc/main';
-import { registerIpcChannel } from '../../../../src/main.js';
+// Helper function to register IPC channel
+import { registerIpcChannel } from 'type-safe-ipc/main';
 
+// Import the IPC channel from the shared code
 import { greetChannel } from '../shared/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -85,9 +84,9 @@ async function createWindow() {
 }
 
 app.on('ready', async () => {
-  // registerIpcChannel(greetChannel, (name) => `Hello ${name}!`);
-  registerIpcChannel(greetChannel, () => {
-    return 'Hello World!';
+  // Register IPC channel
+  registerIpcChannel(greetChannel, (event, name) => {
+    return `Hello, ${name}!`;
   });
 
   createWindow();

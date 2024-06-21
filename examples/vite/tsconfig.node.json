@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "strict": true,
     "composite": true,
     "module": "NodeNext",
-    "moduleResolution": "Node16",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
