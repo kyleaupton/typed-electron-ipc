@@ -1,14 +1,14 @@
 # type-safe-ipc
 
-This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent. By using shared types, this package helps you avoid runtime errors and mismatches in parameters and return types.
+This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent.
 
 ## Philosophy
 
-In Electron.js development, importing Node.js modules into the renderer process is generally discouraged due to potential security risks. This package employs a "shared" module approach, where you define the type of an IPC channel within a shared module that can be bundled into either the main or renderer process. This approach ensures that when defining the IPC channel's handler in the main process and consuming the IPC channel in the renderer process, the parameters and return types are type-safe, providing robust communication.
+In Electron.js development, importing Node.js modules into the renderer process is generally discouraged due to potential security risks. This package employs a "shared" module approach, where you define the type of an IPC channel within a shared module that can be bundled into either the main or renderer process. This approach ensures that the type of the IPC channel and it's handler implementation are not coupled together, meaning you can easily import that IPC definition into either process.
 
 ## Example
 
-Here's a complete example
+Here's a abstract example. For complete examples, see [the examples directory.](./examples)
 
 ### Shared IPC channel type definition (`shared/readFile.ts`)
 
