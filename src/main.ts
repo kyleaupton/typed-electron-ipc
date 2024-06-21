@@ -24,7 +24,7 @@ export const registerIpcChannel = <P extends any[] = [], R = void>(
   channelDefinition: IpcChannel<P, R>,
   handler: (event: IpcMainInvokeEvent, ...args: P) => NoInfer<PromiseLike<R | IpcError> | R | IpcError>, // eslint-disable-line
 ): void => {
-  ipcMain.handle(channelDefinition.channel, (event, ...args) =>
+  ipcMain.handle(channelDefinition.name, (event, ...args) =>
     handler(event, ...(args as P)),
   );
 };

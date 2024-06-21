@@ -6,7 +6,7 @@ export const ipcInvoke = async <P extends any[], R>(
   channelDefinition: IpcChannel<P, R>,
   ...args: P
 ) => {
-  const result = await ipcRenderer.invoke(channelDefinition.channel, ...args);
+  const result = await ipcRenderer.invoke(channelDefinition.name, ...args);
 
   if (result && typeof result === 'object' && result.error) {
     throw new Error(result.error.message);
