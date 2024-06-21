@@ -12,7 +12,9 @@
   "keywords": [
     "electron",
     "IPC",
-    "typescript"
+    "typescript",
+    "type-safe",
+    "typed"
   ],
   "author": "Kyle Upton <kyleaupton@gmail.com>",
   "license": "MIT",
