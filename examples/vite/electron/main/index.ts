@@ -4,7 +4,7 @@ import path from 'node:path';
 import os from 'node:os';
 
 // Helper function to register IPC channel
-import { registerIpcChannel } from 'typed-electron-ipc/main';
+import { ipcHandle } from 'typed-electron-ipc/main';
 
 // Import the IPC channel from the shared code
 import { greetChannel } from '../shared/index.js';
@@ -85,7 +85,7 @@ async function createWindow() {
 
 app.on('ready', async () => {
   // Register IPC channel
-  registerIpcChannel(greetChannel, (event, name) => {
+  ipcHandle(greetChannel, (event, name) => {
     return `Hello, ${name}!`;
   });
 

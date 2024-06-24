@@ -34,12 +34,12 @@ export const readFileChannel: IpcChannel<[string], string> = {
 
 ```typescript
 import fs from 'fs/promises';
-import { registerIpcChannel } from 'typed-electron-ipc/main';
+import { ipcHandle } from 'typed-electron-ipc/main';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts';
 
-registerIpcChannel(readFileChannel, (event, path) => {
+ipcHandle(readFileChannel, (event, path) => {
   return fs.readFile(path, 'utf-8');
 });
 ```
@@ -67,12 +67,12 @@ We'll continue with the above example of reading a file with `fs`.
 
 ```typescript
 import fs from 'fs/promises'
-import { registerIpcChannel, throwIpcError } from 'typed-electron-ipc/main';
+import { ipcHandle, throwIpcError } from 'typed-electron-ipc/main';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts'
 
-registerIpcChannel(readFileChannel, (event, path) => {
+ipcHandle(readFileChannel, (event, path) => {
   // Ensure file exists
   try {
     await fs.stat(path);

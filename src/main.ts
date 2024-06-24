@@ -20,7 +20,7 @@ export type IpcError = ReturnType<typeof throwIpcError>;
  * @param handler Handler function for the channel
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const registerIpcChannel = <P extends any[] = [], R = void>(
+export const ipcHandle = <P extends any[] = [], R = void>(
   channelDefinition: IpcChannel<P, R>,
   handler: (event: IpcMainInvokeEvent, ...args: P) => NoInfer<PromiseLike<R | IpcError> | R | IpcError>, // eslint-disable-line
 ): void => {
