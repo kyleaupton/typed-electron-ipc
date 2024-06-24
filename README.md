@@ -37,7 +37,7 @@ import fs from 'fs/promises';
 import { registerIpcChannel } from 'typed-electron-ipc/main';
 
 // Shared IPC channel definition
-import { readFileChannel } from '..path/to/shared/readFile.ts';
+import { readFileChannel } from '../path/to/shared/readFile.ts';
 
 registerIpcChannel(readFileChannel, (event, path) => {
   return fs.readFile(path, 'utf-8');
@@ -50,7 +50,7 @@ registerIpcChannel(readFileChannel, (event, path) => {
 import { ipcInvoke } from 'typed-electron-ipc/renderer';
 
 // Shared IPC channel definition
-import { readFileChannel } from '..path/to/shared/readFile.ts';
+import { readFileChannel } from '../path/to/shared/readFile.ts';
 
 const fileContents = await ipcInvoke(readFileChannel, '/etc/hosts');
 ```
@@ -70,7 +70,7 @@ import fs from 'fs/promises'
 import { registerIpcChannel, throwIpcError } from 'typed-electron-ipc/main';
 
 // Shared IPC channel definition
-import { readFileChannel } from '..path/to/shared/readFile.ts'
+import { readFileChannel } from '../path/to/shared/readFile.ts'
 
 registerIpcChannel(readFileChannel, (event, path) => {
   // Ensure file exists
@@ -90,7 +90,7 @@ registerIpcChannel(readFileChannel, (event, path) => {
 import { ipcInvoke } from 'typed-electron-ipc/renderer';
 
 // Shared IPC channel definition
-import { readFileChannel } from '..path/to/shared/readFile.ts';
+import { readFileChannel } from '../path/to/shared/readFile.ts';
 
 try {
   const fileContents = await ipcInvoke(readFileChannel, '/etc/hosts');
