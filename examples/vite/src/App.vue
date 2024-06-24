@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
     <a href="https://www.electronjs.org/" target="_blank">
@@ -15,14 +11,41 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
 
-  <HelloWorld msg="Electron + Vite + Vue" />
+  <h1>Electron + Vite + Vue</h1>
+
+  <p>Enter your name</p>
+
+  <div class="greet-form">
+    <input v-model="name" id="text" />
+    <button @click="greet">Greet</button>
+  </div>
+    
+  <p>{{ greeting }}</p>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const name = ref('');
+const greeting = ref('');
+
+const greet = async () => {
+  greeting.value = await window.api.greet(name.value);
+}
+</script>
 
 <style>
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.greet-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
 .logo {

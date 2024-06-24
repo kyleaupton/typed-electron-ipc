@@ -1,10 +1,10 @@
 import { contextBridge } from 'electron';
-import { ipcInvoke } from 'typed-electron-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc/dist/renderer';
 import { greetChannel } from '../shared/index.js';
 
 export const api = {
-  greet: (string: string) => {
-    return ipcInvoke(greetChannel, string);
+  greet: (name: string) => {
+    return ipcInvoke(greetChannel, name);
   },
 };
 

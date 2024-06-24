@@ -3,10 +3,10 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
 
-// Helper function to register IPC channel
-import { ipcHandle } from 'typed-electron-ipc/main';
+// Helper function to register IPC channels
+import { ipcHandle } from 'typed-electron-ipc/dist/main';
 
-// Import the IPC channel from the shared code
+// IPC channel definition from the shared code
 import { greetChannel } from '../shared/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
