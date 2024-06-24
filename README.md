@@ -11,7 +11,7 @@ In Electron.js development, importing Node.js modules into the renderer process 
 ## Important notes
 
 > [!NOTE]
-> TypeScript version >= 5.4.0 is **required**. The `NoInfer` utility type is used.
+> TypeScript version `>= 5.4.0` is **required**. The `NoInfer` utility type is used.
 
 > [!NOTE]
 > Strict mode must be turned on in `tsconfig.json`. Otherwise type infrence will not work as expected.
@@ -35,8 +35,9 @@ export readFileChannel: IpcChannel<[string], string> = {
 ```typescript
 import fs from 'fs/promises';
 import { registerIpcChannel } from 'typed-electron-ipc/main';
-// Shared IPC channel type
-import { readFileChannel } from 'path/to/shared/readFile.ts';
+
+// Shared IPC channel definition
+import { readFileChannel } from '..path/to/shared/readFile.ts';
 
 registerIpcChannel(readFileChannel, (event, path) => {
   return fs.readFile(path, 'utf-8');
@@ -47,8 +48,9 @@ registerIpcChannel(readFileChannel, (event, path) => {
 
 ```typescript
 import { ipcInvoke } from 'typed-electron-ipc/renderer';
-// Shared IPC channel type
-import { readFileChannel } from 'path/to/shared/readFile.ts';
+
+// Shared IPC channel definition
+import { readFileChannel } from '..path/to/shared/readFile.ts';
 
 const fileContents = await ipcInvoke(readFileChannel, '/etc/hosts');
 ```
@@ -66,8 +68,9 @@ We'll continue with the above example of reading a file with `fs`.
 ```typescript
 import fs from 'fs/promises'
 import { registerIpcChannel, throwIpcError } from 'typed-electron-ipc/main';
-// Shared IPC channel type
-import { readFileChannel } from 'path/to/shared/readFile.ts'
+
+// Shared IPC channel definition
+import { readFileChannel } from '..path/to/shared/readFile.ts'
 
 registerIpcChannel(readFileChannel, (event, path) => {
   // Ensure file exists
@@ -85,8 +88,9 @@ registerIpcChannel(readFileChannel, (event, path) => {
 
 ```typescript
 import { ipcInvoke } from 'typed-electron-ipc/renderer';
-// Shared IPC channel type
-import { readFileChannel } from 'path/to/shared/readFile.ts';
+
+// Shared IPC channel definition
+import { readFileChannel } from '..path/to/shared/readFile.ts';
 
 try {
   const fileContents = await ipcInvoke(readFileChannel, '/etc/hosts');
@@ -96,6 +100,10 @@ try {
   }
 }
 ```
+
+## Import paths
+
+This package provides three named exports, `main`, `renderer`, and `shared`. Under most circumstances, referencing these named exports in your import path should work. For example, `import { ipcInvoke } from 'typed-electron-ipc/renderer'`. In TypeScript projects `moduleResolution` needs to be set to `Node16` or `NodeNext` in order for this to work. If that is not a possibility, then using the following import statement should work- `import { ipcInvoke } from 'typed-electron-ipc/dist/renderer'`.
 
 ## License
 
