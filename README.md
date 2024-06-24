@@ -18,7 +18,7 @@ In Electron.js development, importing Node.js modules into the renderer process 
 
 ## Example
 
-Here's a abstract example. For complete examples, see [the examples directory.](./examples)
+Here's an abstract example. For complete examples, see [the examples directory.](./examples)
 
 ### Shared IPC channel type definition (`shared/readFile.ts`)
 
