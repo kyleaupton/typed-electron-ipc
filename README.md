@@ -25,7 +25,7 @@ Here's a abstract example. For complete examples, see [the examples directory.](
 ```typescript
 import { IpcChannel } from 'typed-electron-ipc/shared'
 
-export readFileChannel: IpcChannel<[string], string> = {
+export const readFileChannel: IpcChannel<[string], string> = {
   name: '/file/read'
 }
 ```
