@@ -28,4 +28,23 @@
 
 import './index.css';
 
+
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
+
+export const greet = async (name: string) => {
+  const greeting = await window.api.greet(name)
+
+  const el = document.getElementById('greeting')
+  if (el) {
+    el.innerText = greeting
+  }
+}
+
+const button = document.getElementById('submit')
+if (button) {
+  const input = document.getElementById('name') as HTMLInputElement
+  if (input) {
+    button.addEventListener('click', () => greet(input.value))
+  }
+}
+
