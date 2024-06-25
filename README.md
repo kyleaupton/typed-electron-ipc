@@ -16,6 +16,20 @@ In Electron.js development, importing Node.js modules into the renderer process 
 > [!NOTE]
 > Strict mode must be turned on in `tsconfig.json`. Otherwise type infrence will not work as expected.
 
+## Installation
+
+If you're using Vite, depending on how it's configured, you may need to install this package as a dev dependency. For more information, see [Installing in `dependencies` vs. `devDependencies`](#installing-in-dependencies-vs-devdependencies).
+
+If you're using Webpack install this package of a normal dependency.
+
+```bash
+npm i typed-electron-ipc
+
+# or
+
+npm i --save-dev typed-electron-ipc
+```
+
 ## Example
 
 Here's an abstract example. For complete examples, see [the examples directory.](./examples)
@@ -100,6 +114,32 @@ try {
   }
 }
 ```
+
+## Installing in `dependencies` vs. `devDependencies`
+
+If you're using Vite, some templates/examples configure Vite so that any installed dependencies are not bundled into the build. This configuration may look something like the following:
+
+```javascript
+// vite.config.ts
+import pkg from './package.json';
+
+...
+
+build: {
+  rollupOptions: {
+    external: Object.keys('dependencies' in pkg ? pkg.dependencies : {})
+  }
+}
+
+...
+```
+
+If you have the above configuration, this package needs to be installed as a dev dependency. If this package is not bundled by Vite, an error will be thrown when the preload script is attempted to be loaded.
+
+Known Electron + Vite templates that ship with the above configuration:
+ * [Electron⚡️Vite](https://github.com/electron-vite)
+ * [Forge `Vite` template](https://www.electronforge.io/templates/vite)
+ * [Forge `Vite + Typescript` template](https://www.electronforge.io/templates/vite-+-typescript)
 
 ## License
 
