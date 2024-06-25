@@ -4,7 +4,7 @@ import path from 'node:path';
 import os from 'node:os';
 
 // Helper function to register IPC channels
-import { ipcHandle } from 'typed-electron-ipc/dist/main';
+import { ipcHandle } from 'typed-electron-ipc';
 
 // IPC channel definition from the shared code
 import { greetChannel } from '../shared/index.js';
