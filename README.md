@@ -138,7 +138,6 @@ If you have the above configuration, this package needs to be installed as a dev
 
 Known Electron + Vite templates that ship with the above configuration:
  * [Electron⚡️Vite](https://github.com/electron-vite)
- * [Forge `Vite` template](https://www.electronforge.io/templates/vite)
  * [Forge `Vite + Typescript` template](https://www.electronforge.io/templates/vite-+-typescript)
 
 ## License
