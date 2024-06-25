@@ -23,7 +23,7 @@ Here's an abstract example. For complete examples, see [the examples directory.]
 ### Shared IPC channel type definition (`shared/readFile.ts`)
 
 ```typescript
-import { IpcChannel } from 'typed-electron-ipc/shared'
+import { IpcChannel } from 'typed-electron-ipc'
 
 export const readFileChannel: IpcChannel<[string], string> = {
   name: '/file/read'
@@ -34,7 +34,7 @@ export const readFileChannel: IpcChannel<[string], string> = {
 
 ```typescript
 import fs from 'fs/promises';
-import { ipcHandle } from 'typed-electron-ipc/main';
+import { ipcHandle } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts';
@@ -47,7 +47,7 @@ ipcHandle(readFileChannel, (event, path) => {
 ### Renderer process
 
 ```typescript
-import { ipcInvoke } from 'typed-electron-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts';
@@ -67,7 +67,7 @@ We'll continue with the above example of reading a file with `fs`.
 
 ```typescript
 import fs from 'fs/promises'
-import { ipcHandle, throwIpcError } from 'typed-electron-ipc/main';
+import { ipcHandle, throwIpcError } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts'
@@ -87,7 +87,7 @@ ipcHandle(readFileChannel, (event, path) => {
 #### Renderer process
 
 ```typescript
-import { ipcInvoke } from 'typed-electron-ipc/renderer';
+import { ipcInvoke } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
 import { readFileChannel } from '../path/to/shared/readFile.ts';
@@ -100,10 +100,6 @@ try {
   }
 }
 ```
-
-## Import paths
-
-This package provides three named exports, `main`, `renderer`, and `shared`. Under most circumstances, referencing these named exports in your import path should work. For example, `import { ipcInvoke } from 'typed-electron-ipc/renderer'`. In TypeScript projects `moduleResolution` needs to be set to `Node16` or `NodeNext` in order for this to work. If that is not a possibility, then using the following import statement should work- `import { ipcInvoke } from 'typed-electron-ipc/dist/renderer'`.
 
 ## License
 
