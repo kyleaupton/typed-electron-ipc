@@ -1,6 +1,6 @@
 {
   "name": "typed-electron-ipc",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1",
   "description": "A solution for type-safe IPC communication in electron",
   "scripts": {
     "build": "tsc",
