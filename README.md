@@ -4,9 +4,9 @@
 
 This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent.
 
-## Philosophy
+## Design Principles
 
-In Electron.js development, importing Node.js modules into the renderer process is generally discouraged due to potential security risks. This package employs a "shared" module approach, where you define the type of an IPC channel within a shared module that can be bundled into either the main or renderer process. This approach ensures that the type of the IPC channel and it's handler implementation are not coupled together, meaning you can easily import that IPC definition into either process.
+This package uses a "shared" module approach, where you define the type of an IPC channel within a shared module that can be bundled into either the main or renderer process. By doing this, we ensure that when you set up an IPC handler in the main process and call it from the renderer process, both actions are guided by the same type definition. This guarantees type safety across the board.
 
 ## Important notes
 
