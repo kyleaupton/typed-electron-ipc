@@ -30,7 +30,7 @@ const name = ref('');
 const greeting = ref('');
 
 const greet = async () => {
-  greeting.value = await window.api.greet(name.value);
+  greeting.value = await window.ipcInvoke('greet', name.value);
 }
 </script>
 

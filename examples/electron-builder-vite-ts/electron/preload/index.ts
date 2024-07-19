@@ -1,11 +1,7 @@
 import { contextBridge } from 'electron';
-import { ipcInvoke } from 'typed-electron-ipc';
-import { greetChannel } from '../shared/index.js';
+import { createIpcClient } from 'typed-electron-ipc';
+import { type Router } from '../main';
 
-export const api = {
-  greet: (name: string) => {
-    return ipcInvoke(greetChannel, name);
-  },
-};
+export const ipcInvoke = createIpcClient<Router>();
 
-contextBridge.exposeInMainWorld('api', api);
+contextBridge.exposeInMainWorld('ipcInvoke', ipcInvoke);

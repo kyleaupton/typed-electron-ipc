@@ -3,11 +3,16 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
 
-// Helper function to register IPC channels
-import { ipcHandle } from 'typed-electron-ipc';
+import { ipcRouter } from 'typed-electron-ipc';
 
-// IPC channel definition from the shared code
-import { greetChannel } from '../shared/index.js';
+// IPC channels
+const router = ipcRouter({
+  greet: async (event, name: string) => {
+    return `Hello, ${name}!`;
+  },
+});
+
+export type Router = typeof router;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -84,11 +89,6 @@ async function createWindow() {
 }
 
 app.on('ready', async () => {
-  // Register IPC channel
-  ipcHandle(greetChannel, (event, name) => {
-    return `Hello, ${name}!`;
-  });
-
   createWindow();
 });
 
