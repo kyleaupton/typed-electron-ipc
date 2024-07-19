@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ipcRenderer } from 'electron';
-import { IpcChannel } from './shared.js';
+import { IpcChannels } from './types';
 
-export const ipcInvoke = async <P extends any[], R>(
-  channelDefinition: IpcChannel<P, R>,
-  ...args: P
-) => {
-  const result = await ipcRenderer.invoke(channelDefinition.name, ...args);
+type ExcludeFirst<T extends any[]> = T extends [any, ...infer Rest] ? Rest : [];
 
-  if (result && typeof result === 'object' && result.error) {
-    throw new Error(result.error.message);
-  }
-
-  return result as R;
+export const createIpcClient = <Router extends IpcChannels>() => {
+  return <
+    C extends keyof Router & string,
+    P extends ExcludeFirst<Parameters<Router[C]>> = never,
+  >(
+    channel: C,
+    ...args: P
+  ) => {
+    return ipcRenderer.invoke(channel, ...args) as ReturnType<Router[C]>;
+  };
 };

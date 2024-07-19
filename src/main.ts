@@ -1,30 +1,38 @@
-import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { IpcChannel } from './shared.js';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { app, ipcMain } from 'electron';
+import { IpcChannels, RouterOptions } from './types.js';
 
-/**
- * Throws an IPC error
- *
- * Since it is not possible bubble up a normal JavaScript exception to the renderer
- * process, we must encode it and return it as a response to the IPC request. The
- * renderer's IPC invoke function will then decode the error and throw it.
- */
-export const throwIpcError = (message: string) => {
-  return { error: { message } };
+export const ipcRouter = <T extends IpcChannels>(
+  channels: T,
+  options?: RouterOptions,
+) => {
+  app.on('ready', () => {
+    Object.entries(channels).forEach(([channel, handler]) => {
+      ipcMain.handle(channel, (event, ...args) => {
+        return new Promise((resolve, reject) => {
+          handler(event, ...args)
+            .then(resolve)
+            .catch((error) => {
+              if (options?.encodeErrors && error instanceof Error) {
+                resolve({
+                  error: {
+                    name: error.name,
+                    message: error.message,
+                    extra: { ...error },
+                  },
+                });
+              } else {
+                reject(error);
+              }
+            });
+        });
+      });
+    });
+  });
+
+  return channels;
 };
 
-export type IpcError = ReturnType<typeof throwIpcError>;
-
-/**
- * Registers an IPC channel with a handler
- * @param channelDefinition Channel definition with name, arg types, and return type
- * @param handler Handler function for the channel
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ipcHandle = <P extends any[] = [], R = void>(
-  channelDefinition: IpcChannel<P, R>,
-  handler: (event: IpcMainInvokeEvent, ...args: P) => NoInfer<PromiseLike<R | IpcError> | R | IpcError>, // eslint-disable-line
-): void => {
-  ipcMain.handle(channelDefinition.name, (event, ...args) =>
-    handler(event, ...(args as P)),
-  );
+export const createIpcHandlers = <T extends IpcChannels>(channels: T) => {
+  return channels;
 };

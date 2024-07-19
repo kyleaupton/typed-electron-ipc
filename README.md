@@ -36,7 +36,7 @@ Here's an abstract example. For complete examples, see [the examples directory.]
 
 ### Shared IPC channel type definition (`shared/readFile.ts`)
 
-```typescript
+```ts
 import { IpcChannel } from 'typed-electron-ipc'
 
 export const readFileChannel: IpcChannel<[string], string> = {
@@ -46,7 +46,7 @@ export const readFileChannel: IpcChannel<[string], string> = {
 
 ### Main process
 
-```typescript
+```ts
 import fs from 'fs/promises';
 import { ipcHandle } from 'typed-electron-ipc';
 
@@ -60,7 +60,7 @@ ipcHandle(readFileChannel, (event, path) => {
 
 ### Renderer process
 
-```typescript
+```ts
 import { ipcInvoke } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
@@ -79,7 +79,7 @@ We'll continue with the above example of reading a file with `fs`.
 
 #### Main process
 
-```typescript
+```ts
 import fs from 'fs/promises'
 import { ipcHandle, throwIpcError } from 'typed-electron-ipc';
 
@@ -100,7 +100,7 @@ ipcHandle(readFileChannel, (event, path) => {
 
 #### Renderer process
 
-```typescript
+```ts
 import { ipcInvoke } from 'typed-electron-ipc';
 
 // Shared IPC channel definition
