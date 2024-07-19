@@ -31,7 +31,7 @@ import './index.css';
 console.log('👋 This message is being logged by "renderer.ts", included via Vite');
 
 export const greet = async (name: string) => {
-  const greeting = await window.api.greet(name)
+  const greeting = await window.ipcInvoke('greet', name)
 
   const el = document.getElementById('greeting')
   if (el) {

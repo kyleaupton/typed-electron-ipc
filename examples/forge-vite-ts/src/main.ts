@@ -2,10 +2,16 @@ import { app, BrowserWindow } from 'electron';
 import path from 'path';
 
 // Registers IPC channel handler
-import { ipcHandle } from 'typed-electron-ipc'
+import { ipcRouter } from 'typed-electron-ipc'
 
-// IPC channel definition
-import { greetIpcChannel } from './shared';
+// IPC channels
+const router = ipcRouter({
+  greet: async (event, name: string) => {
+    return `Hello, ${name}!`;
+  },
+});
+
+export type Router = typeof router;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -37,10 +43,6 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-  ipcHandle(greetIpcChannel, async (event, name) => {
-    return `Hello, ${name}!`;
-  });
-
   createWindow();
 });
 

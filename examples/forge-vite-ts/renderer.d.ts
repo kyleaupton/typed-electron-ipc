@@ -1,7 +1,7 @@
-import { api } from './src/preload';
+import { ipcInvoke } from './src/preload';
 
 declare global {
   interface Window {
-    api: typeof api;
+    ipcInvoke: typeof ipcInvoke;
   }
 }
