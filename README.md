@@ -20,8 +20,6 @@ npm i --save-dev typed-electron-ipc
 
 ## Example
 
-For more examples, see [the examples directory.](./examples)
-
 ### Main process
 
 This is where you define the main process IPC handlers. You do that by calling `ipcRouter` and passing it an object where the keys are the name of the IPC channel, and the values are the handler functions. These handlers will automatically be registered when the app's `ready` event is fired.
@@ -101,6 +99,10 @@ const result = await window.ipcInvoke('add', 2, 3);
 
 const tempPath = await window.ipcInvoke('/app/path/temp');
 ```
+
+For more examples, see [the examples directory.](./examples)
+
+Also see [Bucket Browser](https://github.com/kyleaupton/bucket-browser) for a larger example.
 
 ## Installing in `dependencies` vs. `devDependencies`
 
