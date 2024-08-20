@@ -7,10 +7,10 @@ type ExcludeFirst<T extends any[]> = T extends [any, ...infer Rest] ? Rest : [];
 export const createIpcClient = <Router extends IpcChannels>() => {
   return <
     C extends keyof Router & string,
-    P extends ExcludeFirst<Parameters<Router[C]>> = never,
+    P extends ExcludeFirst<Parameters<Router[C]>>,
   >(
     channel: C,
-    ...args: P
+    ...args: NoInfer<P>
   ) => {
     return ipcRenderer.invoke(channel, ...args) as ReturnType<Router[C]>;
   };
