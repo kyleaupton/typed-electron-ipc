@@ -4,6 +4,9 @@
 
 This package provides a type-safe solution for IPC in Electron.js, ensuring that the communication between the main and renderer processes is reliable and consistent.
 
+> [!NOTE]
+> TypeScript version `>= 5.4.0` is **required**. The `NoInfer` utility type is used.
+
 ## Installation
 
 If you're using Vite, depending on how it's configured, you may need to install this package as a dev dependency. For more information, see [Installing in `dependencies` vs. `devDependencies`](#installing-in-dependencies-vs-devdependencies).
